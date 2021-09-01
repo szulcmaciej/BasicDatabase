@@ -1,7 +1,8 @@
 import sys
 
 from BasicDatabase.database import Database
-from BasicDatabase.stdin_commands import CommandHandler, EndCommandEncountered
+from BasicDatabase.stdin_commands import CommandHandler
+from BasicDatabase.errors import EndCommandEncountered
 
 
 class StdinDBProcessor:

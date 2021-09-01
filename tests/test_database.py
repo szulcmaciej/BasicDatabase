@@ -1,6 +1,7 @@
 from unittest import TestCase
 
-from BasicDatabase.database import Database, NoOpenTransactionError
+from BasicDatabase.database import Database
+from BasicDatabase.errors import NoOpenTransactionError
 
 
 class DatabaseTest(TestCase):
@@ -28,7 +29,7 @@ class DatabaseTest(TestCase):
         self.db.unset(key)
 
         # then
-        self.assertEqual(self.db.get(key), None)
+        self.assertEqual(self.db.get(key), 'NULL')
 
     def test_num_equal_to_zero(self):
         # given
@@ -74,7 +75,7 @@ class DatabaseTest(TestCase):
         key = 'foo'
         value = 'bar'
         expected_in_transaction_value = value
-        expected_after_rollback_value = None
+        expected_after_rollback_value = 'NULL'
 
         # when
         self.db.begin_transaction()

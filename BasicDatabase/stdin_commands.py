@@ -1,11 +1,8 @@
 from abc import abstractmethod, ABC
 from typing import List
 
-from BasicDatabase.database import Database, NoOpenTransactionError
-
-
-class EndCommandEncountered(Exception):
-    pass
+from BasicDatabase.database import Database
+from BasicDatabase.errors import NoOpenTransactionError, EndCommandEncountered, UnknownCommandError
 
 
 class Command(ABC):
@@ -111,10 +108,6 @@ class EndCommand(Command):
 
     def run(self, db: Database, arguments):
         raise EndCommandEncountered
-
-
-class UnknownCommandError(RuntimeError):
-    pass
 
 
 class CommandHandler:
